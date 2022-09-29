@@ -1,23 +1,10 @@
 import * as React from "react";
-import { Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 
-function LiveScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Live Screen</Text>
-    </View>
-  );
-}
-
-function SimulationScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Simulation Screen</Text>
-    </View>
-  );
-}
+// Screen Imports
+import { LiveScreen } from "./Screens/LiveScreen";
+import { SimulationScreen } from "./Screens/SimulationScreen";
 
 const Drawer = createDrawerNavigator();
 
