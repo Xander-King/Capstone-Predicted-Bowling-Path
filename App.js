@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Live">
+      <Drawer.Navigator initialRouteName="LoginScreen.js">
         <Drawer.Screen name="Live" component={LiveScreen} />
         <Drawer.Screen name="Simulation" component={SimulationScreen} />
       </Drawer.Navigator>
