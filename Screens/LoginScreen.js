@@ -10,13 +10,13 @@ import {
   TouchableOpacity,
 } from "react-native";
  
-export default function App() {
+export function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
  
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("./assets/bowling.jpeg")} />
+      <Image style={styles.image} source={require("../assets/bowling.jpeg")} />
  
       <StatusBar style="auto" />
       <View style={styles.inputView}>
@@ -38,10 +38,10 @@ export default function App() {
         />
       </View>
  
-      {//<TouchableOpacity>
-        //<Text style={styles.forgot_button}>Forgot Password?</Text>
-      //</TouchableOpacity>
-    }
+      <TouchableOpacity>
+        <Text style={styles.forgot_button}>Forgot Password?</Text>
+      </TouchableOpacity>
+    
  
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>LOGIN</Text>
