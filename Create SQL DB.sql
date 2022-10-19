@@ -1,5 +1,6 @@
 CREATE DATABASE `bowlingapp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
+
 CREATE TABLE `bowlingapp`.`users` (
   `userId` INT NOT NULL AUTO_INCREMENT,
   `userName` VARCHAR(45) NOT NULL,
@@ -10,5 +11,7 @@ CREATE TABLE `bowlingapp`.`users` (
 CREATE TABLE `bowlingapp`.`balls` (
   `ballId` INT NOT NULL AUTO_INCREMENT,
   `userId` INT NOT NULL,
-  PRIMARY KEY (`ballId`),
-  UNIQUE INDEX `ballId_UNIQUE` (`ballId` ASC) VISIBLE);
+  `ballColor` VARCHAR(45) NOT NULL,
+  `ballWeight` VARCHAR(45) NOT NULL,
+  `ballName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ballId`));
