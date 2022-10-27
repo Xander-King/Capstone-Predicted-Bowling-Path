@@ -12,7 +12,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Live">
-        <Drawer.Screen name="Live" component={LiveScreen} />
+        <Drawer.Screen name="Shot History" component={LiveScreen} />
         <Drawer.Screen name="Simulation" component={SimulationScreen} />
       </Drawer.Navigator>
     </NavigationContainer>

@@ -1,9 +1,14 @@
-import { View, Text } from "react-native";
+import { ScrollView } from "react-native";
+
+import { CardComp } from "../Components/CardComp";
 
 export function LiveScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Live Screen</Text>
-    </View>
+    <ScrollView>
+      <CardComp />
+      <CardComp />
+      <CardComp />
+      <CardComp />
+    </ScrollView>
   );
 }
