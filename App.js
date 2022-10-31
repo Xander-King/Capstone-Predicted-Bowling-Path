@@ -7,7 +7,6 @@ import { LiveScreen } from "./Screens/LiveScreen";
 import { SimulationScreen } from "./Screens/SimulationScreen";
 import  EquipmentScreen  from "./Screens/EquipmentScreen";
 import  EquipmentDetails  from "./Screens/EquipmentDetails";
-import AddEquipment from "./Screens/AddEquipment";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -16,7 +15,7 @@ function EquipmentStack() {
   return (
     <Stack.Navigator>
     <Stack.Screen name="Equip" component={EquipmentScreen} options={{ headerShown: false}} />
-    <Stack.Screen name="EquipmentDetails" component={EquipmentDetails} options={{ headerShown: true}}/>
+    <Stack.Screen name="EquipmentDetails" component={EquipmentDetails} options={{ title: ' '}}/>
     
     </Stack.Navigator>
   );

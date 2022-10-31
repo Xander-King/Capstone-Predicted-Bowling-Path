@@ -8,7 +8,7 @@ export default function EquipmentDetails({ route, navigation }){
         <View style={styles.container}>
             <Card>
                 <Text>name: { JSON.stringify(name) }</Text>
-                <Text>weight: { JSON.stringify(weight) }</Text>
+                <Text>weight in pounds: { JSON.stringify(weight) }</Text>
                 <Text>color: { JSON.stringify(color) }</Text>
             </Card>
         </View>
@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        
     },
 });

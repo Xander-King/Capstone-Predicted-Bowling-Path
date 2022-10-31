@@ -59,7 +59,7 @@ export default function EquipmentScreen({ navigation }) {
         <FlatList
             data={balls}
             renderItem={({ item }) => (
-                //NAVIGATION DOES NOT CURRENTLY WORK, to be able to navigate between the two, equipment screen and Equipment Details need to be in a stack navigator
+                
                 <TouchableOpacity onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color })}>
                 <Card>
                     <Text>{ item.name }</Text>

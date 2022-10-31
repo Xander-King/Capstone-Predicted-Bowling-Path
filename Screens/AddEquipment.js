@@ -1,14 +1,7 @@
 import { StyleSheet, View, Text, Button } from "react-native";
-
-import SelectList from 'react-native-dropdown-select-list'
 import { TextInput } from "react-native-gesture-handler";
-import { Formik, Formil } from 'formik';
-
+import { Formik } from 'formik';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-
-import { useFormik } from 'formik';
 import { Picker } from '@react-native-community/picker'
 import * as yup from 'yup';
 
@@ -39,10 +32,7 @@ export default function AddEquipment( {addEquip}) {
     {name:'Violet', id: 7},
   ];
 
- // const selectUse = () => {
- //   formikProps.handleChange('color')
- //   console.log(formikProps.values.color)
- // }
+
 
   return (
     <View>
@@ -62,41 +52,31 @@ export default function AddEquipment( {addEquip}) {
           <TextInput 
             style={styles.input} 
             placeholder='Enter Name'
-            /*onChangeText={(val) => setName(val)  } */
             //updates name
             onChangeText={formikProps.handleChange('name')}
             value={formikProps.values.name}
             onBlur={formikProps.handleBlur('name')}
           />
-          <Text>{formikProps.touched.name && formikProps.errors.name}</Text>
+          <Text style = {styles.alertText}>{formikProps.touched.name && formikProps.errors.name}</Text>
 
           {/*TextInput for weight variable, keyboardType brings up a number pad */}
           <TextInput 
             keyboardType='numeric'
             style={styles.input} 
             placeholder='Enter Weight'
-            /*onChangeText={(val) => setWeight(val)  } */
             onChangeText={formikProps.handleChange('weight')}
             value={formikProps.values.weight}
             onBlur={formikProps.handleBlur('weight')}
           />
-          <Text>{formikProps.touched.weight && formikProps.errors.weight}</Text>
+          <Text style = {styles.alertText}>{formikProps.touched.weight && formikProps.errors.weight}</Text>
 
-          {/* SelectList/dropdown for ball color */}
-          {/* <SelectList 
-          data={colorData} 
-          setSelected={setSelected}
-          onSelect={() => {
-            formikProps.handleChange('color')
-           // formikProps.values.color = {{setColor}}
-           // console.log({selected})
-          }}
-          //try setSelected if error
-          
-          //value={formikProps.values.color}
-          placeholder="Select Color" /> */}
+
+
+          <View style={ styles.pickerStyle}>
+
 
           <Picker
+              
               enabled={true}
               mode="dropdown"
               placeholder="Select Color"
@@ -115,32 +95,21 @@ export default function AddEquipment( {addEquip}) {
                 )
               })}
           </Picker>
-          <Text>{formikProps.touched.color && formikProps.errors.color}</Text>
 
-
-
-          <Text>Current Props:   Color: {color}, Weight: {weight}, Name: {name} </Text>
+          </View>
+          <Text style = {styles.alertText}>{formikProps.touched.color && formikProps.errors.color}</Text>
+          
+          
           {/*will submit the form*/}
           <Button title='Create New Equipment Set' onPress={formikProps.handleSubmit} />
+          
+          
           </View>
 
         )}
 
 
-      </Formik>
-      
-      
-     {/* <Text>Enter weight in pounds:</Text>
-      
-
-      
-      <Text>Enter name of ball:</Text>
-      
-
-      <Text>Current Props:  Color: {color}, Weight: {weight}, Name: {name} </Text>
-
-          */}
-      
+      </Formik>     
     </View>
   );
 }
@@ -149,8 +118,18 @@ const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderColor: '#777',
+        borderStyle: "solid",
         padding: 8,
         margin: 10,
-        width: 200,
+    },
+    pickerStyle: {
+      borderWidth: 1,
+      borderColor: '#777',
+      margin: 10,
+    },
+    alertText: {
+      color: 'red',
+      textAlign: "center",
     }
+  
 })
