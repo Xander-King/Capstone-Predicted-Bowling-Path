@@ -1,0 +1,16 @@
+get http://localhost:3000/health
+
+###
+get http://localhost:3000/users
+
+###
+post http://localhost:3000/users
+content-type: application/json
+
+{"email": "1234", "password": "456", "secQuest": "345"}
+
+###
+post http://localhost:3000/login
+content-type: application/json
+
+{"email": "1234", "password": "456"}

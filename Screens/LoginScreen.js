@@ -9,10 +9,42 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
- 
+import { useNavigation } from '@react-navigation/native';
+
+//import { createStackNavigator } from "@react-navigation/stack";
+
+import { MakeAccount } from "./MakeAccount";
+import { ForgotPassword } from "./ForgotPassword";
+import { LiveScreen } from "./LiveScreen";
+
+import axios from "axios";
+
+const apiUrl = "http://localhost:3000";
+//const stack = createStackNavigator();
+
+
+
 export function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginRes, setLoginRes] = useState(0);
+  const navigation = useNavigation();
+  const doLogin = () =>  {
+    const rsp = axios.post(apiUrl + "/login", {email:email, password:password});
+    
+    rsp.then((r) => {
+      
+      setLoginRes(r.status);
+      navigation.navigate(LiveScreen);
+    }).catch((err) => {
+     console.error("Access Denied")
+      setLoginRes(err.response.status);
+    });
+    
+    //console.log(rsp);
+    
+  };
+  
  
   return (
     <View style={styles.container}>
@@ -38,15 +70,28 @@ export function LoginScreen() {
         />
       </View>
  
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate(ForgotPassword)}>
         <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
     
+      <TouchableOpacity onPress={() => navigation.navigate(MakeAccount)}>
+        <Text style={styles.make_account}>Make Account</Text>
+      </TouchableOpacity>
  
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity onPress={doLogin}
+      style={styles.loginBtn}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
-    </View>
+
+      <Text>{loginRes}</Text>
+ 
+  {/* <NavigationContainer>
+    <stack.Navigator>
+      <stack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <stack.Screen name="MakeAccount" component={MakeAccount} />
+    </stack.Navigator>
+  </NavigationContainer> */}
+</View>
   );
 }
  
@@ -85,6 +130,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
  
+  make_account: {
+    height: 30,
+    marginBottom: 10,
+    textDecorationLine: "underline",
+  },
+
   loginBtn: {
     width: "80%",
     borderRadius: 25,
