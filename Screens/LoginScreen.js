@@ -83,7 +83,7 @@ export function LoginScreen() {
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
 
-      <Text>{loginRes}</Text>
+      
  
   {/* <NavigationContainer>
     <stack.Navigator>

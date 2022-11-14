@@ -64,6 +64,49 @@ app.post("/login", (req, res) => {
       });
 });
 
+app.post("/makeAccount", (req, res) => {
+    console.log(req.body);
+    loginHelper.addUser(req.body, (err, r) => {
+
+        if (err) {
+            console.error(err.message);
+            if (err.message.includes("Duplicate")) {
+                res.sendStatus(429);
+            } else {
+                res.sendStatus(500);
+            }
+        } else {
+            console.log(r);
+            if(r[0].length == 0) {
+                res.sendStatus(403);
+            } else {
+            res.json(r[0]);
+            }
+        }
+    })
+
+
+});
+
+app.post("/getPassword", (req, res) => {
+    console.log(req.body);
+    loginHelper.getPassword(req.body, (err, r) => {
+        
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+        } else {
+            console.log(r);
+            if(r[0].length == 0) {
+                res.sendStatus(404);
+            } else {
+            res.json(r[0][0]);
+            }
+        }
+    })
+});
+
+
 app.listen(port, () => {
     console.log(`listening on ${port}`);
 });

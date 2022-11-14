@@ -11,15 +11,36 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { LiveScreen } from './LiveScreen';
 
+import axios from "axios";
 
- 
+const apiUrl = "http://localhost:3000";
+
 export function ForgotPassword() {
   const [email, setEmail] = useState("");
   //const [password, setPassword] = useState("");
   const [sQuest, setSQuest] = useState("");
   const sQuestOpt = ["Mother's Maiden Name", "First Pet's Name", "Favorite Bowling Alley"]
   const navigation = useNavigation();
+  const [passRes, setPassRes] = useState(0);
+  const [passwordText, setPasswordText] = useState("");
+
+  const doGetPassword = () =>  {
+    const rsp = axios.post(apiUrl + "/getPassword", {email:email, sQuest:sQuest});
+    
+    rsp.then((r) => {
+      setPasswordText(r.data.password);
+      setPassRes(r.status);
+      
+    }).catch((err) => {
+     //console.error("No such account exists.");
+     console.error(err);
+      setPassRes(err.response.status);
+    });
+    
+    
+  };
   
   return (
     <View style={styles.container}>
@@ -85,14 +106,18 @@ export function ForgotPassword() {
         <Text style={styles.make_account}>Make Account</Text>
   </TouchableOpacity> */}
  
-      <TouchableOpacity style={styles.makeAcctBtn}>
+      <TouchableOpacity style={styles.makeAcctBtn} onPress={doGetPassword}>
         <Text style={styles.makeAcctText}>Get Password</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text style={styles.goBack}>Back</Text>
       </TouchableOpacity>
+
+      <Text>{passwordText}</Text>
     </View>
+
+    
   );
 }
  

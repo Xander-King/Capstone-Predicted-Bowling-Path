@@ -42,3 +42,15 @@ cn.end();
       
       cn.end();
       }
+
+module.exports.getPassword = ({email, sQuest}, cb) => {
+  const cn = mysql.createConnection(config);
+
+   let procedure = `CALL getPassword(?, ?)`;
+  //let procedure = `SELECT password FROM bowlingapp.users WHERE username = ? AND secQuest = ?`;
+
+  //opens cn
+  cn.query(procedure, [email, sQuest], cb);
+
+  cn.end();
+}

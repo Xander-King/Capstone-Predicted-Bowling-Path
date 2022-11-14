@@ -12,13 +12,49 @@ import {
 } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
+import axios from "axios";
+
+const apiUrl = "http://localhost:3000";
  
 export function MakeAccount() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [sQuest, setSQuest] = useState("");
-  const sQuestOpt = ["Mother's Maiden Name", "First Pet's Name", "Favorite Bowling Alley"]
+  const sQuestOpt = ["Mother's Maiden Name", "First Pet's Name", "Favorite Bowling Alley"];
+  const [addUserRes, setAddUserRes] = useState(0);
   const navigation = useNavigation();
+  const [submitted, setSubmitted] = useState(false);
+  const getTextStyle = (c) => {
+    if (c == "" && submitted) {
+      return styles.TextInputRed
+    } else {
+      return styles.TextInput
+    }
+  }
+  const doMakeAccount = () =>  {
+    setSubmitted(true);
+    if(email == "" || password == "" || sQuest == "") {
+      console.error("Must fill in all fields");
+    } else {
+    
+    const rsp = axios.post(apiUrl + "/makeAccount", {email:email, password:password, secQuest:sQuest});
+    
+    rsp.then((r) => {
+      
+      setAddUserRes(r.status);
+      navigation.navigate(LiveScreen);
+    }).catch((err) => {
+      if(err.response.status == 429) {
+        console.error("Account Already Exists");
+      } else {
+        console.error("Server Error");
+      }
+     
+      setAddUserRes(err.response.status);
+    });
+    
+  }
+  };
 
   return (
     <View style={styles.container}>
@@ -27,7 +63,7 @@ export function MakeAccount() {
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
-          style={styles.TextInput}
+          style={getTextStyle(email)}
           placeholder="Desired Username."
           placeholderTextColor="#010203"
           onChangeText={(email) => setEmail(email)}
@@ -36,7 +72,7 @@ export function MakeAccount() {
  
       <View style={styles.inputView}>
         <TextInput
-          style={styles.TextInput}
+          style={getTextStyle(password)}
           placeholder="Desired Password."
           placeholderTextColor="#010203"
           secureTextEntry={true}
@@ -66,7 +102,7 @@ export function MakeAccount() {
 
       <View style={styles.inputView}>
         <TextInput
-          style={styles.TextInput}
+          style={getTextStyle(sQuest)}
           placeholder="Security Answer"
           placeholderTextColor="#010203"
           secureTextEntry={true}
@@ -80,7 +116,7 @@ export function MakeAccount() {
         <Text style={styles.make_account}>Make Account</Text>
   </TouchableOpacity> */}
  
-      <TouchableOpacity onPress={() => addUser(email, password, sQuest)}
+      <TouchableOpacity onPress={doMakeAccount}
       style={styles.makeAcctBtn} >
         <Text style={styles.makeAcctText}>Make Account</Text>
       </TouchableOpacity>
@@ -123,6 +159,14 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
  
+  TextInputRed: {
+    height: 50,
+    flex: 1,
+    padding: 10,
+    marginLeft: 20,
+    backgroundColor: "red",
+  },
+
  goBack: {
    height: 30,
    marginBottom: 30,

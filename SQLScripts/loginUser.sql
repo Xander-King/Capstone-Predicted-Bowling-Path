@@ -1,5 +1,5 @@
 USE `bowlingapp`;
-DROP PROCEDURE loginUser;
+DROP PROCEDURE IF EXISTS loginUser;
 DELIMITER //
 
 
@@ -9,6 +9,6 @@ BEGIN
 
 SELECT userName 
 	FROM bowlingapp.users
-	WHERE userName = p_userName AND password = SHA1(p_password);
+	WHERE userName = p_userName AND password = p_password;
 	
 END

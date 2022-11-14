@@ -16,11 +16,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="LoginScreen">
-        <Drawer.Screen name="Login" component={LoginScreen} options={{headerShown:false}} />
+        <Drawer.Screen name="Login" component={LoginScreen} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}} />
         <Drawer.Screen name="LiveScreen" component={LiveScreen} />
         <Drawer.Screen name="Simulation" component={SimulationScreen} />
-        <Drawer.Screen name="MakeAccount" component={MakeAccount} options={{headerShown:false}}/>
-        <Drawer.Screen name="ForgotPassword" component={ForgotPassword} options={{headerShown:false}}/>
+        <Drawer.Screen name="MakeAccount" component={MakeAccount} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}}/>
+        <Drawer.Screen name="ForgotPassword" component={ForgotPassword} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}}/>
       </Drawer.Navigator>
 
     </NavigationContainer>
