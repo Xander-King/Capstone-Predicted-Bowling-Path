@@ -5,16 +5,27 @@ import { NavigationContainer } from "@react-navigation/native";
 // Screen Imports
 import { LiveScreen } from "./Screens/LiveScreen";
 import { SimulationScreen } from "./Screens/SimulationScreen";
+import { LoginScreen } from "./Screens/LoginScreen";
+import { MakeAccount } from "./Screens/MakeAccount";
+import { ForgotPassword } from "./Screens/ForgotPassword";
+
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Live">
-        <Drawer.Screen name="Shot History" component={LiveScreen} />
+      <Drawer.Navigator initialRouteName="LoginScreen">
+        <Drawer.Screen name="Login" component={LoginScreen} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}} />
+        <Drawer.Screen name="Shot HistoryScreen" component={LiveScreen} />
         <Drawer.Screen name="Simulation" component={SimulationScreen} />
+        <Drawer.Screen name="MakeAccount" component={MakeAccount} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}}/>
+        <Drawer.Screen name="ForgotPassword" component={ForgotPassword} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}}/>
       </Drawer.Navigator>
+
     </NavigationContainer>
   );
 }
