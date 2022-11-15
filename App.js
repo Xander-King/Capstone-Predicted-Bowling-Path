@@ -18,7 +18,7 @@ export default function App() {
       <Drawer.Navigator initialRouteName="LoginScreen">
         <Drawer.Screen name="Login" component={LoginScreen} 
         options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}} />
-        <Drawer.Screen name="Shot HistoryScreen" component={LiveScreen} />
+        <Drawer.Screen name="LiveScreen" component={LiveScreen} />
         <Drawer.Screen name="Simulation" component={SimulationScreen} />
         <Drawer.Screen name="MakeAccount" component={MakeAccount} 
         options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}}/>
