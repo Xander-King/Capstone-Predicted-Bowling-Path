@@ -14,7 +14,7 @@ const validationConditions = yup.object({
   } )
 })
 
-
+//comment for change
 
 
 export default function AddEquipment( {addEquip}) {
@@ -40,7 +40,9 @@ export default function AddEquipment( {addEquip}) {
       initialValues={{ name: '', weight: '', color: ''}}
       validationSchema={validationConditions}
       onSubmit={(values) => {
+        console.log(values.weight);
         addEquip(values);
+        
         
 
       }}

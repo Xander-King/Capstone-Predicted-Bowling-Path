@@ -8,6 +8,7 @@ import AddEquipment from "./AddEquipment";
 export default function EquipmentScreen({ navigation }) {
     
     const [visibleModal, setVisibleModal] = useState(false);
+    //set equal to database
     const [balls, setBalls]  = useState([
         {
             name: 'Old Reliable',
@@ -34,6 +35,7 @@ export default function EquipmentScreen({ navigation }) {
     const addEquip = (equipment) => {
         equipment.key = Math.random().toString();
         setBalls((currentEquipmentSets) => {
+            //update database and refresh
             return [equipment, ...currentEquipmentSets];
         });
         setVisibleModal(false);
