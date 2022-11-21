@@ -1,89 +1,193 @@
-import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 const SimulationForm = () => {
 
-  const [velo, setVelo] = React.useState();
-  const [xVelo, setXVelo] = React.useState();
-  const [yVelo, setYVelo] = React.useState();
-  const [zVelo, setZVelo] = React.useState();
-  const [xRot, setXRot] = React.useState();
-  const [yRot, setYRot] = React.useState();
-  const [zRot, setZRot] = React.useState();
+  const [velocity, setVelocity] = useState("");
+  const [rotation, setRotation] = useState("");
+  const [position, setPosition] = useState("");
+
+  const [initialVelocity, setInitialVelocity] = useState(velocity);
+  const [initialRotation, setInitialRotation] = useState(rotation);
+  const [middleVelocity, setMiddleVelocity] = useState(velocity);
+  const [middleRotation, setMiddleRotation] = useState(rotation);
+  const [finalVelocity, setFinalVelocity] = useState(velocity);
+  const [finalRotation, setFinalRotation] = useState(rotation);
+
+  function calcInitialVelocity() {
+    setInitialVelocity(Number(velocity));
+  }
+
+  function calcInitialRotation() {
+    setInitialRotation(Number(rotation));
+  }
+
+  function calcMiddleVelocity() {
+    setMiddleVelocity(Number(velocity) * 1.2);
+  }
+
+  function calcMiddleRotation() {
+    setMiddleRotation(Number(rotation) * 1.2);
+  }
+
+  function calcFinalVelocity() {
+    setFinalVelocity(Number(velocity) * 1.5);
+  }
+
+  function calcFinalRotation() {
+    setFinalRotation(Number(rotation) * 1.5);
+  }
+
+  function calculate() {
+    calcInitialVelocity();
+    calcInitialRotation();
+
+    calcMiddleVelocity();
+    calcMiddleRotation();
+
+    calcFinalVelocity();
+    calcFinalRotation();
+  }
 
   return (
     <View>
-        <Text style={styles.text}>Enter Velocity:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={velo => setVelo(velo)}
-          value={velo}
-        />
-        <Text style={styles.text}>Enter X Velocity:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={xVelo => setXVelo(xVelo)}
-          value={xVelo}
-        />
-        <Text style={styles.text}>Enter Y Velocity:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={yVelo => setYVelo(yVelo)}
-          value={yVelo}
-        />
-        <Text style={styles.text}>Enter Z Velocity:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={zVelo => setZVelo(zVelo)}
-          value={zVelo}
-        />
-        <Text style={styles.text}>Enter X Rotation:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={xRot => setXRot(xRot)}
-          value={xRot}
-        />
-        <Text style={styles.text}>Enter Y Rotation:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={yRot => setYRot(yRot)}
-          value={yRot}
-        />
-        <Text style={styles.text}>Enter Z Rotation:</Text>
-        <TextInput
-          style={styles.textfield}
-          placeholder="Enter a Value"
-          onChangeText={zRot => setZRot(zRot)}
-          value={zRot}
-        />
-        <Button
-          onPress={() => Alert.alert('Submitted')}
-          title='Calculate'
-        />
+      <View style={{flexDirection:"row"}}>
+        <View style={styles.output}>
+          <View style={styles.final}>
+            <Text>Velocity: { finalVelocity } m/s</Text>
+            <Text>Rotation: { finalRotation } rpm</Text>
+          </View>
+          <View style={styles.middle}>
+            <Text>Velocity: { middleVelocity } m/s</Text>
+            <Text>Rotation: { middleRotation } rpm</Text>
+          </View>
+          < View style={styles.initial}>
+            <Text>Velocity: { initialVelocity } m/s</Text>
+            <Text>Rotation: { initialRotation } rpm</Text>
+          </View>
         </View>
+        <View style={{flex:1}}>
+          <Image style={styles.image} source={require('./BowlingLane.png')} />
+        </View>
+      </View>
+    <View style={styles.form}>
+      <Text style={styles.title}>Enter Fields</Text>
+      <View>
+        <View style={styles.input}>
+          <Text style={styles.text}>Initial Velocity</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='Enter a Value'
+            placeholderTextColor="#010203"
+            keyboardType='numeric'
+            value={velocity}
+            onChangeText={(velocity) => setVelocity(velocity)}
+            maxLength={5}
+          />
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.text}>Initial Rotation</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='Enter a Value'
+            placeholderTextColor="#010203"
+            keyboardType='numeric'
+            value={rotation}
+            onChangeText={(rotation) => setRotation(rotation)}
+            maxLength={5}
+          />
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.text}>Initial Position (Board L1-L20 or R1-R20)</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='Enter a Value'
+            placeholderTextColor="#010203"
+            value={position}
+            onChangeText={(position) => setPosition(position)}
+            maxLength={3}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={function(event){ calculate()}}
+          >
+          <Text style={styles.buttonText}>Calculate</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+    </View>
     );
   }
-  
+  export default SimulationForm;
+
   const styles = StyleSheet.create({
-    textfield: {
-      height: 20, 
-      borderColor: 'black', 
-      borderWidth: 1, 
-      marginLeft: 30,
-      marginRight: 30,
-      marginBottom: 5
+
+    button: {
+      padding: 10,
+      marginTop: 25,
+      width: "80%",
+      borderRadius: 25,
+      alignItems: "center",
+      backgroundColor: "#002387",
+      marginLeft: 35,
+      marginRight: 35
     },
+
+    buttonText: {
+      color: '#ffffff'
+    },
+
+    final: {
+      marginTop: 20
+    },
+
+    form: {
+      marginLeft: 50,
+      marginRight: 50
+    },
+
+    image: {
+      borderColor: 'black',
+      borderWidth: 3,
+      borderRadius: 10,
+      width: 100,
+      height: 400,
+      marginTop: 20,
+      marginBottom: 20,
+    },
+
+    initial: {
+      marginTop: 150
+    },
+
+    input: {
+      marginTop: 10,
+    },
+
+    middle: {
+      marginTop: 150
+    },
+
+    output: {
+      flex: 0.5,
+      paddingLeft: 20
+    },
+
     text: {
-      fontWeight: "bold",
-      marginLeft: 30,
-      marginRight: 30
+      fontWeight: 'bold'
+    },
+
+    textInput: {
+      borderColor: 'black',
+      borderWidth: 1,
+      borderRadius: 5
+    },
+
+    title: {
+      fontWeight: 'bold',
+      fontSize: '25px',
+      textAlign: 'center'
     }
   });
-  
-  export default SimulationForm
