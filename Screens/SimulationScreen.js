@@ -1,9 +1,13 @@
-import { View, Text } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Image } from 'react-native';
+import SimulationForm from '../SimulationForm';
 
 export function SimulationScreen() {
+
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Simulation Screen</Text>
+    <View>
+      <SimulationForm/>
     </View>
   );
 }
+
