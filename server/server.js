@@ -77,10 +77,10 @@ app.post("/makeAccount", (req, res) => {
             }
         } else {
             console.log(r);
-            if(r[0].length == 0) {
-                res.sendStatus(403);
+            if(r.affectedRows == 1) {
+                res.json({message:"Account Created"});
             } else {
-            res.json(r[0]);
+            res.json(r);
             }
         }
     })
