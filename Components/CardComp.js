@@ -1,25 +1,19 @@
 import { Text, View } from "react-native";
 import { Divider } from "react-native-elements";
 
-export const CardComp = (props) => {
+export function CardComp({ shotNum, speed, spin, rot }) {
   return (
     <View style={styles.containerStyle}>
-      {props.children}
-      <View>
-        <Text style={styles.titleStyle}>Test Component</Text>
-        <Divider width={3} />
-        <View padding={5}>
-          <Text>Speed:</Text>
-          <Text>Spin:</Text>
-          <Text>Rotation:</Text>
-          <Text>Field:</Text>
-          <Text>Field:</Text>
-          <Text>Field:</Text>
-        </View>
+      <Text style={styles.titleStyle}>Shot {shotNum}</Text>
+      <Divider width={3} />
+      <View padding={5}>
+        <Text>Speed: {speed}</Text>
+        <Text>Spin: {spin}</Text>
+        <Text>Rotation: {rot}</Text>
       </View>
     </View>
   );
-};
+}
 
 const styles = {
   containerStyle: {
