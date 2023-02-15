@@ -14,16 +14,19 @@ export default function EquipmentScreen({ navigation }) {
             name: 'Old Reliable',
             weight: '8 lbs',
             color: 'Red',
+            coreType: 'Symmetric',
         },
         {
             name: 'Shiny',
             weight: '12 lbs',
             color: 'Blue',
+            coreType: 'Asymmetric',
         },
         {
             name: 'Blank Spacey',
             weight: '14 lbs',
             color: 'White',
+            coreType: 'Symmetric',
         },
     ]);
 
@@ -44,7 +47,7 @@ export default function EquipmentScreen({ navigation }) {
   return (
     <View style={ styles.container }>
 
-        <Modal visible={visibleModal} animationType='slide'>
+        <Modal visible={visibleModal} animationType='slide' onSwipe={this.closeModal}>
             <View>
                 <MaterialIcons
                 name='close'
@@ -62,7 +65,8 @@ export default function EquipmentScreen({ navigation }) {
             data={balls}
             renderItem={({ item }) => (
                 
-                <TouchableOpacity onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color })}>
+                <TouchableOpacity onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color, coreType: item.coreType, rG: item.rG, diff: item.diff, iDiff: item.iDiff, 
+                 hdp: item.hdp, vdp: item.vdp, hdcg: item.hdcg, vdcg: item.vdcg})}>
                 <Card>
                     <Text>{ item.name }</Text>
                 </Card>

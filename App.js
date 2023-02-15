@@ -28,9 +28,10 @@ function EquipmentStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="LoginScreen">
-        <Drawer.Screen name="Login" component={LoginScreen} 
-        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}} />
+    <Drawer.Navigator>
+      {/* <Drawer.Navigator initialRouteName="LoginScreen"> */}
+        {/* <Drawer.Screen name="Login" component={LoginScreen} 
+        options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}} /> */}
         <Drawer.Screen name="LiveScreen" component={LiveScreen} />
         <Drawer.Screen name="Simulation" component={SimulationScreen} />
         <Drawer.Screen name="Equipment" component={EquipmentStack} options={{ headerShown: true}} />
