@@ -31,6 +31,9 @@
     "react-native-select-dropdown": "^2.0",
     "yup": "^0.32.11.4"
   },
+  "peerDependencies": {
+    "react": "^16.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },

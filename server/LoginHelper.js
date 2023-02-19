@@ -6,7 +6,7 @@ module.exports.addUser = ({email, password, secQuest}, cb) => {
   const cn = mysql.createConnection(config);
 
   let procedure = `CALL addUser(?, ?, ?)`;
-  console.log(email);
+  //console.log(email);
 
 
   //opens cn
