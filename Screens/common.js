@@ -1,0 +1,1 @@
+module.exports.apiUrl = "http://bowlingapp.capstone.csi.miamioh.edu:3000";
