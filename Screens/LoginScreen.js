@@ -19,8 +19,9 @@ import { LiveScreen } from "./LiveScreen";
 
 import axios from "axios";
 
-const apiUrl = "http://localhost:3000";
+//const apiUrl = "http://localhost:3000";
 //const stack = createStackNavigator();
+const apiUrl = "http://bowling.capstone.csi.miamioh.edu:3000";
 
 
 
