@@ -1,15 +1,18 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import Card from '../SharedComponents/card';
+import AppContext from "../AppContext"
+import axios from "axios";
+import {apiUrl} from "./common";
 
 export default function EquipmentDetails({ route, navigation }){
     const{ name, weight, color, coreType, rG, diff, iDiff, hdp, vdp, hdcg, vdcg } = route.params;
 
     const addBall = () =>  {
         setSubmitted(true);
-        if(email == "" || password == "" || sQuest == "") {
-          console.error("Must fill in all fields");
-        } else {
+        // if(email == "" || password == "" || sQuest == "") {
+        //   console.error("Must fill in all fields");
+        // } else {
         
         const rsp = axios.post(apiUrl + "/addBall", {email:email, password:password, secQuest:sQuest});
         
@@ -27,7 +30,7 @@ export default function EquipmentDetails({ route, navigation }){
           setAddUserRes(err.response.status);
         });
         
-      }
+      
       };
 
 

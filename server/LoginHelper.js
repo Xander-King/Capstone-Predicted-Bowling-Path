@@ -55,14 +55,17 @@ module.exports.getPassword = ({email, sQuest}, cb) => {
   cn.end();
 }
 
-module.exports.addBall = ({email, sQuest}, cb) => {
+module.exports.addBall = ({userId, manufacturer, year, ballName, ballColor, ballWeight, coreName, coreType,
+  coreRG, coreDifferential, coreIDiff, coverName, coverFinish, horizDistToPin, vertDistToPin, horizDistToCG, vertDistToCG,
+  horizDistToMB, vertDistToMB}, cb) => {
   const cn = mysql.createConnection(config);
 
-   let procedure = `CALL getPassword(?, ?)`;
-  //let procedure = `SELECT password FROM bowlingapp.users WHERE username = ? AND secQuest = ?`;
+   let procedure = `CALL addBall(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   //opens cn
-  cn.query(procedure, [email, sQuest], cb);
+  cn.query(procedure, [userId, manufacturer, year, ballName, ballColor, ballWeight, coreName, coreType,
+    coreRG, coreDifferential, coreIDiff, coverName, coverFinish, horizDistToPin, vertDistToPin, horizDistToCG, vertDistToCG,
+    horizDistToMB, vertDistToMB], cb);
 
   cn.end();
 }
