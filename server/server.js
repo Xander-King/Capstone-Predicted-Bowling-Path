@@ -160,6 +160,24 @@ app.post("/editBall", (req, res) => {
     })
 });
 
+app.post("/getUserBalls", (req, res) => {
+    console.log(req.body);
+    loginHelper.getPassword(req.body, (err, r) => {
+        
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+        } else {
+            console.log(r);
+            if(r[0].length == 0) {
+                res.sendStatus(404);
+            } else {
+            res.json(r[0][0]);
+            }
+        }
+    })
+});
+
 app.listen(port, () => {
     console.log(`listening on ${port}`);
 });
