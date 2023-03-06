@@ -69,3 +69,12 @@ module.exports.addBall = ({userId, manufacturer, year, ballName, ballColor, ball
 
   cn.end();
 }
+
+module.exports.getUserBalls = ({userId}, cb) => {
+  let procedure = `CALL getUserBalls(?)`;
+  const cn = mysql.createConnection(config);
+
+  cn.query(procedure, [userId], cb);
+
+  cn.end;
+}

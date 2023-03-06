@@ -1,5 +1,5 @@
 const express = require('express');
-const loginHelper = require("./LoginHelper");
+const helper = require("./DatabaseHelper");
 const app = express();
 const port = 3000;
 
@@ -21,7 +21,7 @@ app.get("/health", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-  loginHelper.listUsers((err, r) => {
+  helper.listUsers((err, r) => {
     if (err) {
         console.error(err);
         res.sendStatus(500);
@@ -33,7 +33,7 @@ app.get("/users", (req, res) => {
 
 app.post("/users", (req, res) => {
     console.log(req.body);
-    loginHelper.addUser(req.body, (err, r) => {
+    helper.addUser(req.body, (err, r) => {
 
         if (err) {
             console.error(err);
@@ -46,7 +46,7 @@ app.post("/users", (req, res) => {
 
 app.post("/login", (req, res) => {
     console.log(req.body);
-    loginHelper.login(req.body, (err, r) => {
+    helper.login(req.body, (err, r) => {
 
         if (err) {
             console.error(err);
@@ -66,7 +66,7 @@ app.post("/login", (req, res) => {
 
 app.post("/makeAccount", (req, res) => {
     console.log(req.body);
-    loginHelper.addUser(req.body, (err, r) => {
+    helper.addUser(req.body, (err, r) => {
 
         if (err) {
             console.error(err.message);
@@ -90,7 +90,7 @@ app.post("/makeAccount", (req, res) => {
 
 app.post("/getPassword", (req, res) => {
     console.log(req.body);
-    loginHelper.getPassword(req.body, (err, r) => {
+    helper.getPassword(req.body, (err, r) => {
         
         if (err) {
             console.error(err);
@@ -108,25 +108,21 @@ app.post("/getPassword", (req, res) => {
 
 app.post("/addBall", (req, res) => {
     console.log(req.body);
-    loginHelper.getPassword(req.body, (err, r) => {
+    helper.addBall(req.body, (err, r) => {
         
         if (err) {
             console.error(err);
             res.sendStatus(500);
         } else {
             console.log(r);
-            if(r[0].length == 0) {
-                res.sendStatus(404);
-            } else {
-            res.json(r[0][0]);
-            }
+            res.json({status:'added'})
         }
     })
 });
 
 app.post("/deleteBall", (req, res) => {
     console.log(req.body);
-    loginHelper.getPassword(req.body, (err, r) => {
+    helper.deleteBall(req.body, (err, r) => {
         
         if (err) {
             console.error(err);
@@ -144,7 +140,7 @@ app.post("/deleteBall", (req, res) => {
 
 app.post("/editBall", (req, res) => {
     console.log(req.body);
-    loginHelper.getPassword(req.body, (err, r) => {
+    helper.editBall(req.body, (err, r) => {
         
         if (err) {
             console.error(err);
@@ -162,18 +158,14 @@ app.post("/editBall", (req, res) => {
 
 app.post("/getUserBalls", (req, res) => {
     console.log(req.body);
-    loginHelper.getPassword(req.body, (err, r) => {
+    helper.getUserBalls(req.body, (err, r) => {
         
         if (err) {
             console.error(err);
             res.sendStatus(500);
         } else {
             console.log(r);
-            if(r[0].length == 0) {
-                res.sendStatus(404);
-            } else {
-            res.json(r[0][0]);
-            }
+            res.json(r[0])
         }
     })
 });
