@@ -129,11 +129,8 @@ app.post("/deleteBall", (req, res) => {
             res.sendStatus(500);
         } else {
             console.log(r);
-            if(r[0].length == 0) {
-                res.sendStatus(404);
-            } else {
-            res.json(r[0][0]);
-            }
+            res.json({status:`${req.body.ballId} deleted`})
+            
         }
     })
 });

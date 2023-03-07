@@ -78,3 +78,12 @@ module.exports.getUserBalls = ({userId}, cb) => {
 
   cn.end;
 }
+
+module.exports.deleteBall = ({ballId}, cb) => {
+  let procedure = `CALL deleteBall(?)`;
+  const cn = mysql.createConnection(config);
+
+  cn.query(procedure, [ballId], cb);
+
+  cn.end;
+}

@@ -32,7 +32,7 @@ function EquipmentStack() {
 export default function App() {
   const[userInfoValue, setUserInfoValue] = useState(-1);
   const globalState = {
-    userInfo: userInfoValue,
+    userInfoValue: userInfoValue,
     setUserInfoValue
   }
   return (
