@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-community/picker": "^1.8.1",
+    "@react-native-picker/picker": "2.4.8",
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.0",
@@ -31,9 +31,7 @@
     "react-native-select-dropdown": "^2.0",
     "yup": "^0.32.11.4"
   },
-  "peerDependencies": {
-    "react": "^16.0"
-  },
+
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
