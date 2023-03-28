@@ -14,8 +14,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import axios from "axios";
 
+import {apiUrl} from "./common";
+
 //const apiUrl = "http://localhost:3000";
-const apiUrl = "http://bowling.capstone.csi.miamioh.edu:3000";
+//const apiUrl = "http://bowlingapp.capstone.csi.miamioh.edu:3000";
  
 export function MakeAccount() {
   const [email, setEmail] = useState("");

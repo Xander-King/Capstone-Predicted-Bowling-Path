@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import AppContext from "../AppContext"
+
 
 //import { createStackNavigator } from "@react-navigation/stack";
 
@@ -19,13 +21,17 @@ import { LiveScreen } from "./LiveScreen";
 
 import axios from "axios";
 
+import {apiUrl} from "./common";
+
+
 //const apiUrl = "http://localhost:3000";
 //const stack = createStackNavigator();
-const apiUrl = "http://bowling.capstone.csi.miamioh.edu:3000";
+//const apiUrl = "http://bowlingapp.capstone.csi.miamioh.edu:3000";
 
 
 
 export function LoginScreen() {
+  const globalState = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginRes, setLoginRes] = useState(0);
@@ -34,12 +40,15 @@ export function LoginScreen() {
     const rsp = axios.post(apiUrl + "/login", {email:email, password:password});
     
     rsp.then((r) => {
-      
+      console.log(JSON.stringify(r.data[0], null, 3))
       setLoginRes(r.status);
+      globalState.setUserInfoValue(r.data[0].userId)
       navigation.navigate(LiveScreen);
     }).catch((err) => {
+      console.error(err)
      console.error("Access Denied")
       setLoginRes(err.response.status);
+
     });
     
     //console.log(rsp);

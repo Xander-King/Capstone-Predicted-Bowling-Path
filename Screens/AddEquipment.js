@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button } from "react-native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { Formik } from 'formik';
 import React, { useState, useEffect } from 'react';
-import { Picker } from '@react-native-community/picker'
+import { Picker } from '@react-native-picker/picker'
 import * as yup from 'yup';
 
 const validationConditions = yup.object({
