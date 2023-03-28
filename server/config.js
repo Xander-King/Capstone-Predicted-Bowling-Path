@@ -1,7 +1,7 @@
 let config = {
     host    : 'localhost',
     user    : 'bowling',
-    password: '!bowlingApp',
+    password: 'bowlingApp',
     database: 'bowlingapp'
   };
   
