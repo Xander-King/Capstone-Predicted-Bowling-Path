@@ -19,7 +19,7 @@ export default function EquipmentScreen({ navigation }) {
     listBalls()
    }, [isFocused])
 
-
+   const [visibleModal, setVisibleModal] = useState(false);
     const [balls, setBalls]  = useState([
         // {
         //     name: 'Old Reliable',
@@ -41,6 +41,10 @@ export default function EquipmentScreen({ navigation }) {
         // },
     ]);
 
+
+    const addPress = () => {
+        setVisibleModal(true)
+    }
 
     const globalState = useContext(AppContext);
 
@@ -66,12 +70,44 @@ export default function EquipmentScreen({ navigation }) {
       
       };
 
+      const addEquip = (equipment) => {
+        equipment.key = Math.random().toString();
+        setBalls((currentEquipmentSets) => {
+            //update database and refresh
+            //NEED TO MAKE SURE THESE VARIABLES CAN BE ACCESSED FROM THE EQUIPMENT
+            //below is added code
+            const userId = globalState.userInfoValue;
+            const rsp = axios.post(apiUrl + "/addBall", {
+                userId: userId, manufacturer: null, year: null, ballName: name, ballColor: color, ballWeight: weight, coreName: null, coreType: coreType,
+                coreRG: rG, coreDifferential: diff, coreIDiff: iDiff, coverName: null, coverFinish: null, horizDistToPin: hdp, vertDistToPin: vdp, horizDistToCG: hdcg, vertDistToCG: vdcg,
+                horizDistToMB: null, vertDistToMB: null
+            });
+
+            rsp.then((r) => {
+                navigation.goBack();
+            }).catch((err) => {
+          
+                    console.error(`Server Error: ${err.message}`);
+          
+
+            });
+
+            //above is added code
+
+
+            return [equipment, ...currentEquipmentSets];
+        });
+        setVisibleModal(false);
+
+      }
+
+
       //listBalls()
 
   return (
     <View style={ styles.container }>
 
-        {/* <Modal visible={visibleModal} animationType='slide' onSwipe={this.closeModal}>
+        { <Modal visible={visibleModal} animationType='slide' onSwipe={this.closeModal}>
             <View>
                 <MaterialIcons
                 name='close'
@@ -83,7 +119,7 @@ export default function EquipmentScreen({ navigation }) {
                 <AddEquipment addEquip={addEquip} />
             </View>
 
-        </Modal> */}
+        </Modal> }
 
 
         <FlatList
@@ -101,7 +137,7 @@ export default function EquipmentScreen({ navigation }) {
 
         <TouchableOpacity 
             style={styles.buttonContainer}
-            onPress={() => navigation.navigate('EquipmentDetails')}
+            onPress={addPress}
         >
 
                 <Image

@@ -31,14 +31,15 @@ export default function EquipmentDetails({ route, navigation }) {
   const globalState = useContext(AppContext);
 
 
-  const addBall = () => {
+  const editBall = () => {
     //setSubmitted(true);
     if (name == "" || weight == "" || color == "" || coreType == "" || rG == ""
       || diff == "" || iDiff == "" || hdp == "" || vdp == "" || hdcg == "" || vdcg == "") {
       console.error("Must fill in all fields");
     } else {
       const userId = globalState.userInfoValue;
-      const rsp = axios.post(apiUrl + "/addBall", {
+      //I CHANGED THIS TO PUT INSTEAD OF POST FOR THE EDIT
+      const rsp = axios.put(apiUrl + "/addBall", {
         userId: userId, manufacturer: null, year: null, ballName: name, ballColor: color, ballWeight: weight, coreName: null, coreType: coreType,
         coreRG: rG, coreDifferential: diff, coreIDiff: iDiff, coverName: null, coverFinish: null, horizDistToPin: hdp, vertDistToPin: vdp, horizDistToCG: hdcg, vertDistToCG: vdcg,
         horizDistToMB: null, vertDistToMB: null
@@ -57,9 +58,7 @@ export default function EquipmentDetails({ route, navigation }) {
   };
 
 
-  const editCard = () => {
-    alert('Test message while I wait for database edit stuff');
-  }
+  
 
   const deleteBall = () => {
     Alert.alert('Are you sure you want to delete this ball?', 'This action cannot be undone', [
