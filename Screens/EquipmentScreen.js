@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, Modal } from "react-native";
 import Card from '../SharedComponents/card';
 import React, { useContext, useState, useEffect } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -113,8 +113,10 @@ export default function EquipmentScreen({ navigation }) {
                 name='close'
                 size={24}
                 style={styles.closeModal}
-                onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color, coreType: item.coreType, rG: item.rG, diff: item.diff, iDiff: item.iDiff, 
-                    hdp: item.hdp, vdp: item.vdp, hdcg: item.hdcg, vdcg: item.vdcg})}
+                //onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color, coreType: item.coreType, rG: item.rG, diff: item.diff, iDiff: item.iDiff, 
+                   // hdp: item.hdp, vdp: item.vdp, hdcg: item.hdcg, vdcg: item.vdcg})}
+                    //I CHANGED THIS FOR THE MODAL AND SUCH WHEN TRYING TO FIX ADD
+                onPress={() => setVisibleModal(false)}   
                 />
                 <AddEquipment addEquip={addEquip} />
             </View>
