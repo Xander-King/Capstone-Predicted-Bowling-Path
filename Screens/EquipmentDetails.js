@@ -205,7 +205,7 @@ export default function EquipmentDetails({ route, navigation }) {
 
         {/* <Button title='Edit Equipment Set' onPress={editCard} /> */}
         <Button title='Delete Ball' onPress={deleteBall} />
-        <Button title='Add Ball' onPress={addBall} />
+        <Button title='Edit Ball' onPress={editBall} />
       </ScrollView>
     </SafeAreaView>
   );
