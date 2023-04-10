@@ -6,7 +6,7 @@ import { Picker } from '@react-native-picker/picker'
 import * as yup from 'yup';
 
 const validationConditions = yup.object({
-  name: yup.string().required().min(1),
+  ballName: yup.string().required().min(1),
   weight: yup.string().required().min(1),
   color: yup.string().required()
   .test('is-color-valid', 'You must select a valid color', (val) => {
@@ -53,7 +53,7 @@ export default function AddEquipment( {addEquip}) {
     <View>
     <ScrollView contentContainerStyle={{paddingBottom: 120}}>
     <Formik
-      initialValues={{ name: '', weight: '', color: '', coreType: '', rG: '', diff: '', iDiff: '', hdp: '', vdp: '', hdcg: '', vdcg: ''}}
+      initialValues={{ ballName: '', weight: '', color: '', coreType: '', rG: '', diff: '', iDiff: '', hdp: '', vdp: '', hdcg: '', vdcg: ''}}
       validationSchema={validationConditions}
       onSubmit={(values) => {
         console.log(values.weight);
@@ -71,11 +71,11 @@ export default function AddEquipment( {addEquip}) {
             style={styles.input} 
             placeholder='Enter Name'
             //updates name
-            onChangeText={formikProps.handleChange('name')}
+            onChangeText={formikProps.handleChange('ballName')}
             value={formikProps.values.name}
-            onBlur={formikProps.handleBlur('name')}
+            onBlur={formikProps.handleBlur('ballName')}
           />
-          <Text style = {styles.alertText}>{formikProps.touched.name && formikProps.errors.name}</Text>
+          <Text style = {styles.alertText}>{formikProps.touched.ballName && formikProps.errors.ballName}</Text>
 
           {/*TextInput for weight variable, keyboardType brings up a number pad */}
           <TextInput 

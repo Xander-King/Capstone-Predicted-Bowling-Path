@@ -78,7 +78,7 @@ export default function EquipmentScreen({ navigation }) {
             //below is added code
             const userId = globalState.userInfoValue;
             const rsp = axios.post(apiUrl + "/addBall", {
-                userId: userId, manufacturer: null, year: null, ballName: name, ballColor: color, ballWeight: weight, coreName: null, coreType: coreType,
+                userId: userId, manufacturer: null, year: null, ballName: ballName, ballColor: color, ballWeight: weight, coreName: null, coreType: coreType,
                 coreRG: rG, coreDifferential: diff, coreIDiff: iDiff, coverName: null, coverFinish: null, horizDistToPin: hdp, vertDistToPin: vdp, horizDistToCG: hdcg, vertDistToCG: vdcg,
                 horizDistToMB: null, vertDistToMB: null
             });
