@@ -76,10 +76,11 @@ export default function EquipmentScreen({ navigation }) {
             //update database and refresh
             //NEED TO MAKE SURE THESE VARIABLES CAN BE ACCESSED FROM THE EQUIPMENT
             //below is added code
+            
             const userId = globalState.userInfoValue;
             const rsp = axios.post(apiUrl + "/addBall", {
-                userId: userId, manufacturer: null, year: null, ballName: ballName, ballColor: color, ballWeight: weight, coreName: null, coreType: coreType,
-                coreRG: rG, coreDifferential: diff, coreIDiff: iDiff, coverName: null, coverFinish: null, horizDistToPin: hdp, vertDistToPin: vdp, horizDistToCG: hdcg, vertDistToCG: vdcg,
+                userId: userId, manufacturer: null, year: null, ballName: currentEquipmentSets.ballName, ballColor: currentEquipmentSets.color, ballWeight: currentEquipmentSets.weight, coreName: null, coreType: currentEquipmentSets.coreType,
+                coreRG: currentEquipmentSets.rG, coreDifferential: currentEquipmentSets.diff, coreIDiff: currentEquipmentSets.iDiff, coverName: null, coverFinish: null, horizDistToPin: currentEquipmentSets.hdp, vertDistToPin: currentEquipmentSets.vdp, horizDistToCG: currentEquipmentSets.hdcg, vertDistToCG: currentEquipmentSets.vdcg,
                 horizDistToMB: null, vertDistToMB: null
             });
 
