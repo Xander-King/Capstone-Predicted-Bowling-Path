@@ -1,7 +1,14 @@
-let config = {
-    host    : 'localhost',
-    user    : 'root',
-    password: '!Skeebo0101',
+// let config = {
+//     host    : 'localhost',
+//     user    : 'bowling',
+//     password: '!bowlingApp',
+//     database: 'bowlingapp'
+//   };
+
+  let config = {
+    host    : 'bowlingapp.capstone.csi.miamioh.edu',
+    user    : 'bowling',
+    password: 'bowlingApp',
     database: 'bowlingapp'
   };
   

@@ -1,70 +1,99 @@
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image, Modal } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import Card from '../SharedComponents/card';
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
 import AddEquipment from "./AddEquipment";
+import axios from "axios";
+import AppContext from "../AppContext"
+import {apiUrl} from "./common";
+import { useIsFocused } from "@react-navigation/native";
+
+
+
 
 
 export default function EquipmentScreen({ navigation }) {
-    
-    const [visibleModal, setVisibleModal] = useState(false);
+    const isFocused = useIsFocused();
     //set equal to database
+   useEffect(()=>{
+    listBalls()
+   }, [isFocused])
+
+
     const [balls, setBalls]  = useState([
-        {
-            name: 'Old Reliable',
-            weight: '8 lbs',
-            color: 'Red',
-        },
-        {
-            name: 'Shiny',
-            weight: '12 lbs',
-            color: 'Blue',
-        },
-        {
-            name: 'Blank Spacey',
-            weight: '14 lbs',
-            color: 'White',
-        },
+        // {
+        //     name: 'Old Reliable',
+        //     weight: '8 lbs',
+        //     color: 'Red',
+        //     coreType: 'Symmetric',
+        // },
+        // {
+        //     name: 'Shiny',
+        //     weight: '12 lbs',
+        //     color: 'Blue',
+        //     coreType: 'Asymmetric',
+        // },
+        // {
+        //     name: 'Blank Spacey',
+        //     weight: '14 lbs',
+        //     color: 'White',
+        //     coreType: 'Symmetric',
+        // },
     ]);
 
-    const testPress = () => {
-        setVisibleModal(true)
-    }
-    
 
-    const addEquip = (equipment) => {
-        equipment.key = Math.random().toString();
-        setBalls((currentEquipmentSets) => {
-            //update database and refresh
-            return [equipment, ...currentEquipmentSets];
+    const globalState = useContext(AppContext);
+
+    const listBalls = () =>  {
+        //setSubmitted(true);
+        // if(email == "" || password == "" || sQuest == "") {
+        //   console.error("Must fill in all fields");
+        // } else {
+        const userId = globalState.userInfoValue;
+        console.log(userId)
+        const rsp = axios.post(apiUrl + "/getUserBalls", {userId:userId});
+        
+        rsp.then((r) => {
+          console.log(r.data);
+          setBalls(r.data);
+        }).catch((err) => {
+         
+            console.error(`Server Error: ${err.message}`);
+          
+         
         });
-        setVisibleModal(false);
-    }
+        
+      
+      };
+
+      //listBalls()
 
   return (
     <View style={ styles.container }>
 
-        <Modal visible={visibleModal} animationType='slide'>
+        {/* <Modal visible={visibleModal} animationType='slide' onSwipe={this.closeModal}>
             <View>
                 <MaterialIcons
                 name='close'
                 size={24}
                 style={styles.closeModal}
-                onPress={() => setVisibleModal(false)}
+                onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color, coreType: item.coreType, rG: item.rG, diff: item.diff, iDiff: item.iDiff, 
+                    hdp: item.hdp, vdp: item.vdp, hdcg: item.hdcg, vdcg: item.vdcg})}
                 />
                 <AddEquipment addEquip={addEquip} />
             </View>
 
-        </Modal>
+        </Modal> */}
 
 
         <FlatList
             data={balls}
             renderItem={({ item }) => (
                 
-                <TouchableOpacity onPress={() => navigation.navigate('EquipmentDetails', {name: item.name, weight: item.weight, color: item.color })}>
+                <TouchableOpacity onPress={() => navigation.navigate('EquipmentDetails', {ballId: item.ballId, name: item.ballName, weight: item.ballWeight, color: item.ballColor, coreType: item.coreType, rG: item.coreRG, diff: item.coreDifferential, iDiff: item.coreIDiff, 
+                 hdp: item.horizDistToPin, vdp: item.vertDistToPin, hdcg: item.horizDistToCG, vdcg: item.vertDistToCG})}>
                 <Card>
-                    <Text>{ item.name }</Text>
+                    <Text>{ item.ballName }</Text>
                 </Card>
                 </TouchableOpacity>
             )}
@@ -72,7 +101,7 @@ export default function EquipmentScreen({ navigation }) {
 
         <TouchableOpacity 
             style={styles.buttonContainer}
-            onPress={testPress}
+            onPress={() => navigation.navigate('EquipmentDetails')}
         >
 
                 <Image

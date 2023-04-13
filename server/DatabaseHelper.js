@@ -54,3 +54,36 @@ module.exports.getPassword = ({email, sQuest}, cb) => {
 
   cn.end();
 }
+
+module.exports.addBall = ({userId, manufacturer, year, ballName, ballColor, ballWeight, coreName, coreType,
+  coreRG, coreDifferential, coreIDiff, coverName, coverFinish, horizDistToPin, vertDistToPin, horizDistToCG, vertDistToCG,
+  horizDistToMB, vertDistToMB}, cb) => {
+  const cn = mysql.createConnection(config);
+
+   let procedure = `CALL addBall(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  //opens cn
+  cn.query(procedure, [userId, manufacturer, year, ballName, ballColor, ballWeight, coreName, coreType,
+    coreRG, coreDifferential, coreIDiff, coverName, coverFinish, horizDistToPin, vertDistToPin, horizDistToCG, vertDistToCG,
+    horizDistToMB, vertDistToMB], cb);
+
+  cn.end();
+}
+
+module.exports.getUserBalls = ({userId}, cb) => {
+  let procedure = `CALL getUserBalls(?)`;
+  const cn = mysql.createConnection(config);
+
+  cn.query(procedure, [userId], cb);
+
+  cn.end;
+}
+
+module.exports.deleteBall = ({ballId}, cb) => {
+  let procedure = `CALL deleteBall(?)`;
+  const cn = mysql.createConnection(config);
+
+  cn.query(procedure, [ballId], cb);
+
+  cn.end;
+}
