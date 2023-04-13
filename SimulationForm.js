@@ -15,39 +15,14 @@ const SimulationForm = () => {
   const [finalVelocity, setFinalVelocity] = useState(velocity);
   const [finalRotation, setFinalRotation] = useState(rotation);
 
-  function calcInitialVelocity() {
-    setInitialVelocity(Number(velocity));
-  }
-
-  function calcInitialRotation() {
-    setInitialRotation(Number(rotation));
-  }
-
-  function calcMiddleVelocity() {
-    setMiddleVelocity(Number(velocity) * 1.2);
-  }
-
-  function calcMiddleRotation() {
-    setMiddleRotation(Number(rotation) * 1.2);
-  }
-
-  function calcFinalVelocity() {
-    setFinalVelocity(Number(velocity) * 1.5);
-  }
-
-  function calcFinalRotation() {
-    setFinalRotation(Number(rotation) * 1.5);
-  }
-
   function calculate() {
-    calcInitialVelocity();
-    calcInitialRotation();
 
-    calcMiddleVelocity();
-    calcMiddleRotation();
-
-    calcFinalVelocity();
-    calcFinalRotation();
+    setInitialVelocity(Number(velocity));
+    setInitialRotation(Number(rotation));
+    setMiddleVelocity(Number(velocity) * 1.2);
+    setMiddleRotation(Number(rotation) * 1.2);
+    setFinalVelocity(Number(velocity) * 1.5);
+    setFinalRotation(Number(rotation) * 1.5);
   }
 
   return (
@@ -140,7 +115,7 @@ const SimulationForm = () => {
     },
 
     final: {
-      marginTop: 20
+      marginTop: 25
     },
 
     form: {
@@ -159,7 +134,7 @@ const SimulationForm = () => {
     },
 
     initial: {
-      marginTop: 150
+      marginTop: 145
     },
 
     input: {
@@ -167,7 +142,7 @@ const SimulationForm = () => {
     },
 
     middle: {
-      marginTop: 150
+      marginTop: 140
     },
 
     output: {
