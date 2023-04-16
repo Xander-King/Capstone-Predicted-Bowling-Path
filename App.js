@@ -31,6 +31,8 @@ function EquipmentStack() {
 
 export default function App() {
   const[userInfoValue, setUserInfoValue] = useState(-1);
+  const[selectedBall, setSelectedBall] = useState(1);
+
   const globalState = {
     userInfoValue: userInfoValue,
     setUserInfoValue
