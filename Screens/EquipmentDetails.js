@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontSize: 'x-small',
+    fontSize: 9,
     alignItems: 'center',
     marginLeft: 10
 
