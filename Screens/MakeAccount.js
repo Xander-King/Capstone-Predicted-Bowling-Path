@@ -14,7 +14,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import axios from "axios";
 
-const apiUrl = "http://localhost:3000";
+import {apiUrl} from "./common";
+
+//const apiUrl = "http://localhost:3000";
+//const apiUrl = "http://bowlingapp.capstone.csi.miamioh.edu:3000";
  
 export function MakeAccount() {
   const [email, setEmail] = useState("");
@@ -40,14 +43,14 @@ export function MakeAccount() {
     const rsp = axios.post(apiUrl + "/makeAccount", {email:email, password:password, secQuest:sQuest});
     
     rsp.then((r) => {
-      
       setAddUserRes(r.status);
-      navigation.navigate(LiveScreen);
+      navigation.goBack();
     }).catch((err) => {
-      if(err.response.status == 429) {
+      if(err.response)
+      if(err.response != undefined && err.response.status == 429) {
         console.error("Account Already Exists");
       } else {
-        console.error("Server Error");
+        console.error(`Server Error: ${err.message}`);
       }
      
       setAddUserRes(err.response.status);

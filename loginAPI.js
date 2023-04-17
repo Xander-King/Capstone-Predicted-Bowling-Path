@@ -16,7 +16,7 @@ export function doLogin  (email, password)  {
   // });
   console.log(rsp);
   rsp.then(console.log);
-  console.log("breast");
+  console.log("east");
   //console.log(rsp);
   
 };
