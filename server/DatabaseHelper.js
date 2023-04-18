@@ -87,3 +87,18 @@ module.exports.deleteBall = ({ballId}, cb) => {
 
   cn.end;
 }
+
+module.exports.editBall = ({ballId, manufacturer, year, ballName, ballColor, ballWeight, coreName, coreType,
+  coreRG, coreDifferential, coreIDiff, coverName, coverFinish, horizDistToPin, vertDistToPin, horizDistToCG, vertDistToCG,
+  horizDistToMB, vertDistToMB}, cb) => {
+  const cn = mysql.createConnection(config);
+
+   let procedure = `CALL editBall(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  //opens cn
+  cn.query(procedure, [ballId, manufacturer, year, ballName, ballColor, ballWeight, coreName, coreType,
+    coreRG, coreDifferential, coreIDiff, coverName, coverFinish, horizDistToPin, vertDistToPin, horizDistToCG, vertDistToCG,
+    horizDistToMB, vertDistToMB], cb);
+
+  cn.end();
+}

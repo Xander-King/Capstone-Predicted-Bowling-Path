@@ -29,6 +29,8 @@ export default function EquipmentDetails({ route, navigation }) {
 
   const params = route.params;
   const globalState = useContext(AppContext);
+  const globalState2 = useContext(AppContext);
+
 
 
   const addBall = () => {
@@ -56,10 +58,30 @@ export default function EquipmentDetails({ route, navigation }) {
     }
   };
 
+  const editBall = () => {
+    //setSubmitted(true);
+    if (name == "" || weight == "" || color == "" || coreType == "" || rG == ""
+      || diff == "" || iDiff == "" || hdp == "" || vdp == "" || hdcg == "" || vdcg == "") {
+      console.error("Must fill in all fields");
+    } else {
+      const rsp = axios.post(apiUrl + "/editBall", {
+        ballId: ballId, manufacturer: null, year: null, ballName: name, ballColor: color, ballWeight: weight, coreName: null, coreType: coreType,
+        coreRG: rG, coreDifferential: diff, coreIDiff: iDiff, coverName: null, coverFinish: null, horizDistToPin: hdp, vertDistToPin: vdp, horizDistToCG: hdcg, vertDistToCG: vdcg,
+        horizDistToMB: null, vertDistToMB: null
+      });
 
-  const editCard = () => {
-    alert('Test message while I wait for database edit stuff');
-  }
+      rsp.then((r) => {
+        navigation.goBack();
+      }).catch((err) => {
+          
+            console.error(`Server Error: ${err.message}`);
+          
+
+      });
+
+    }
+  };
+
 
   const deleteBall = () => {
     Alert.alert('Are you sure you want to delete this ball?', 'This action cannot be undone', [
@@ -206,6 +228,7 @@ export default function EquipmentDetails({ route, navigation }) {
         {/* <Button title='Edit Equipment Set' onPress={editCard} /> */}
         <Button title='Delete Ball' onPress={deleteBall} />
         <Button title='Add Ball' onPress={addBall} />
+        <Button title='Edit Ball' onPress={editBall}/>
       </ScrollView>
     </SafeAreaView>
   );
