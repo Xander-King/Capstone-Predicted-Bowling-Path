@@ -40,7 +40,7 @@ export default function App() {
   return (
     <AppContext.Provider value={globalState}>
     <NavigationContainer>
-        <Drawer.Navigator initialRouteName="LoginScreen"> 
+        <Drawer.Navigator initialRouteName="Login"> 
         <Drawer.Screen name="Login" component={LoginScreen} 
         options={{headerShown:false, drawerLabel: () => null, title: null, drawerIcon: () => null}} /> 
         <Drawer.Screen name="LiveScreen" component={LiveScreen} />

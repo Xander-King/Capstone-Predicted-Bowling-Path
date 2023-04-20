@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { Picker } from '@react-native-picker/picker'
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
 const SimulationForm = () => {
 
   const [velocity, setVelocity] = useState("");
   const [rotation, setRotation] = useState("");
   const [position, setPosition] = useState("");
+  const [selectedBall, setSelectedBall] = useState();
 
   const [initialVelocity, setInitialVelocity] = useState(velocity);
   const [initialRotation, setInitialRotation] = useState(rotation);
@@ -27,6 +29,7 @@ const SimulationForm = () => {
 
   return (
     <View>
+      <ScrollView contentContainerStyle={{paddingBottom: 120}}>
       <View style={{flexDirection:"row"}}>
         <View style={styles.output}>
           <View style={styles.final}>
@@ -83,15 +86,23 @@ const SimulationForm = () => {
             onChangeText={(position) => setPosition(position)}
             maxLength={3}
           />
+          <Picker
+          selectedValue={selectedBall}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedBall(itemValue)
+          }>
+            <Picker.Item label="Test" value="blue" />
+            <Picker.Item label="Mr. Ball" value="red" />
+          </Picker>
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={function(event){ calculate()}}
-          >
+          onPress={function(event){ calculate()}}>
           <Text style={styles.buttonText}>Calculate</Text>
         </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
     </View>
     );
   }
@@ -101,7 +112,6 @@ const SimulationForm = () => {
 
     button: {
       padding: 10,
-      marginTop: 25,
       width: "80%",
       borderRadius: 25,
       alignItems: "center",
