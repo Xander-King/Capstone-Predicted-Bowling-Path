@@ -68,8 +68,8 @@ export function SimulationScreen() {
             <Text>Rotation: { finalRotation } rpm</Text>
           </View>
           < View style={styles.initial}>
-            <Text>Velocity: { initialVelocity.toFixed(2) } m/s</Text>
-            <Text>Rotation: { initialRotation.toFixed(2) } rpm</Text>
+            <Text>Velocity: { initialVelocity } m/s</Text>
+            <Text>Rotation: { initialRotation } rpm</Text>
           </View>
         </View>
         <View style={{flex:1}}>
