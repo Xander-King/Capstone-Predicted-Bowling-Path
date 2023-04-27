@@ -64,8 +64,8 @@ export function SimulationScreen() {
       <View style={{flexDirection:"row"}}>
         <View style={styles.output}>
           <View style={styles.final}>
-            <Text>Velocity: { finalVelocity.toFixed(2) } m/s</Text>
-            <Text>Rotation: { finalRotation.toFixed(2) } rpm</Text>
+            <Text>Velocity: { finalVelocity } m/s</Text>
+            <Text>Rotation: { finalRotation } rpm</Text>
           </View>
           < View style={styles.initial}>
             <Text>Velocity: { initialVelocity.toFixed(2) } m/s</Text>
