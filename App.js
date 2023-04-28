@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 // Screen Imports
 import { LiveScreen } from "./Screens/LiveScreen";
@@ -35,7 +35,7 @@ function EquipmentStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Login">
+      <Drawer.Navigator initialRouteName="LoginScreen">
         <Drawer.Screen
           name="Login"
           component={LoginScreen}
