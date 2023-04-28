@@ -1,3 +1,11 @@
+// import { LogBox } from "react-native";
+// LogBox.ignoreWarnings(["Attempted import error", "events"]);
+
+//require("node-libs-react-native/globals");
+
+//require("react-native-fs");
+
+import "./shims.js";
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
@@ -35,10 +43,10 @@ function EquipmentStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="LoginScreen">
+      <Drawer.Navigator initialRouteName="LiveScreen">
         <Drawer.Screen
           name="Login"
-          component={LoginScreen}
+          component={LiveScreen}
           options={{
             headerShown: false,
             drawerLabel: () => null,
